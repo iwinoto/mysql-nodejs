@@ -1,0 +1,10 @@
+applications:
+- path: .
+  memory: 320M
+  instances: 1
+  domain: mybluemix.net
+  name: Albums-MySQL
+  host: iw-albums-mysql-demo
+  disk_quota: 1024M
+  services:
+  - albums-mysqldb
