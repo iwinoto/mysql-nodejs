@@ -2,7 +2,7 @@ applications:
 - path: .
   memory: 320M
   instances: 1
-  domain: mybluemix.net
+  domain: au-syd.mybluemix.net
   name: Albums-MySQL
   host: iw-albums-mysql-demo
   disk_quota: 1024M
