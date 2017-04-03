@@ -2,7 +2,6 @@
  * Module dependencies.
  */
 var cfenv = require('cfenv');
-var appEnv = cfenv.getAppEnv();
 var express = require('express');
 var index = require('./routes/index');
 var albums = require('./routes/albums');
@@ -36,16 +35,19 @@ if ('development' == app.get('env')) {
     connection peer, register as middleware
     type koneksi : single,pool and request
 -------------------------------------------*/
-var cfcreds = appEnv.getServiceCreds("albums-mysqldb");
+if(process.env.VCAP_SERVICES){
+  var appEnv = cfenv.getAppEnv();
+  var cfcreds = appEnv.getServiceCreds("albums-mysqldb");
+}
+
 default_dbcreds = {
   host: 'cap-sg-prd-4.integration.ibmcloud.com',
-  user: 'admin',
-  password : 'admin',
+  user: 'user01',
+  password : 'user01',
   port : 17399, //port mysql
   database:'data'}
 
 var dbcreds = (cfcreds ? cfcreds : default_dbcreds);
-//var dbcreds = default_dbcreds;
 
 app.use(
 
@@ -53,8 +55,8 @@ app.use(
 
         host: dbcreds.host,
         user: dbcreds.user,
-        password : dbcreds.password,
-        port : dbcreds.port, //port mysql
+        password: dbcreds.password,
+        port: dbcreds.port, //port mysql
         database: dbcreds.database
     },'request')
 );
