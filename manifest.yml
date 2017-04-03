@@ -4,7 +4,8 @@ applications:
   instances: 1
   domain: au-syd.mybluemix.net
   name: Albums-MySQL
-  host: iw-albums-mysql-demo
+  host: albums-mysql
+  random-route: true
   disk_quota: 1024M
   services:
   - albums-mysqldb
